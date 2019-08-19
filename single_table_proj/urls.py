@@ -16,12 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-
+from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
 
 from single_table_app import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    url(r'^emojis/$', views.EmojiEdit.as_view()),
+    url(r'^emojis/(?P<id>[0-9]+)$', views.EmojiEdit.as_view()),
     path('single_table_app/', include('single_table_app.urls')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
