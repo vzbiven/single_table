@@ -128,7 +128,7 @@ Ext.onReady(function () {
                         var emp = store.getProxy();
                         emp.setExtraParam("id", nn)
                         grid.store.remove(selected);
-                        grid.store.sync();
+                        //grid.store.sync();
                     }
                 }
         );

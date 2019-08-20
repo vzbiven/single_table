@@ -49,7 +49,6 @@ class EmojiEdit(APIView):
     #Working with PUT request
     def put(self, request, id, format=None):
         emoji = self.get_object(id)
-        # !!!
         serializer = EmojiSerializer(emoji, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
