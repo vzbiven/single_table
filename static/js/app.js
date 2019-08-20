@@ -51,6 +51,12 @@ Ext.onReady(function () {
     //initializing columns for the table
     var columns = [
         {
+            header: 'ID',
+            dataIndex: 'id',
+            sortable: true,
+            width: 50,
+        },
+        {
             header: 'Emoji',
             dataIndex: 'emoji',
             sortable: true,

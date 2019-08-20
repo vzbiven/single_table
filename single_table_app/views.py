@@ -50,13 +50,13 @@ class EmojiEdit(APIView):
     def put(self, request, id, format=None):
         emoji = self.get_object(id)
         # !!!
-        serializer = EmojiSerializer(emoji, data=request.data)
+        serializer = EmojiSerializer(emoji, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
-    #working with DELETE request, deleted data are stored in db with flag 'DELETED'
+    #working with DELETE request
     def delete(self, request, id, format=None):
         emoji = self.get_object(id)
         emoji.delete()
