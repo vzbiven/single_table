@@ -15,6 +15,7 @@ from django.core.paginator import Paginator
 @ensure_csrf_cookie
 def index(request):
     return render(request, 'single_table_app/index.html')
+    #return render(request, 'static/apps/build/production/TableApp/index.html')
 
 
 #CRUD class view
