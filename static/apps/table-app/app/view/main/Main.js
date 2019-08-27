@@ -59,17 +59,7 @@ var columns = [
     },
 
 ];
-Ext.define('Emoji', {
-    extend: 'Ext.data.Model',
-    fields: [
-        'id',
-        'emoji',
-        'name',
-        'group',
-        'sub_group',
-        'codepoints',
-    ]
-});
+
 
 //Creating store to hold data with dynamic loading via rest
 var store = Ext.create('Ext.data.Store', {
