@@ -5,6 +5,90 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
+    //creating editor for rows data
+var textField = {
+    xtype: 'textfield',
+    getSubmitValue: function(){
+        var value = this.getValue();
+        if(Ext.isEmpty(value)) {
+            return null;
+        }
+        return value;
+}
+};
+    
+var columns = [
+    {
+        header: 'ID',
+        dataIndex: 'id',
+        sortable: true,
+        width: 50,
+    },
+    {
+        header: 'Emoji',
+        dataIndex: 'emoji',
+        sortable: true,
+        width: 50,
+        editor: textField
+    },
+    {
+        header: 'Name',
+        dataIndex: 'name',
+        sortable: true,
+        flex: 1,
+        editor: textField
+    },
+    {
+         header: 'Group',
+         dataIndex: 'group',
+         sortable: true,
+         flex: 1,
+         editor: textField
+    },
+    {
+        header: 'Sub Group',
+        dataIndex: 'sub_group',
+        sortable: true,
+        editor: textField,
+    },
+    {
+        header: 'Codepoints',
+        dataIndex: 'codepoints',
+        sortable: true,
+        editor: textField
+    },
+
+];
+Ext.define('Emoji', {
+    extend: 'Ext.data.Model',
+    fields: [
+        'id',
+        'emoji',
+        'name',
+        'group',
+        'sub_group',
+        'codepoints',
+    ]
+});
+
+//Creating store to hold data with dynamic loading via rest
+var store = Ext.create('Ext.data.Store', {
+    model: 'Emoji',
+    autoLoad: {start: 0, limit: 25},
+    proxy: {
+        noCache: false,
+        type: 'rest',
+        url: 'emojis',
+        format: 'json',
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+            totalProperty: 'total'
+        },
+        writer: 'json',
+    },
+});
+
 Ext.define('TableApp.view.main.Main', {
     extend: 'Ext.container.Container',
     requires: [
@@ -28,26 +112,28 @@ Ext.define('TableApp.view.main.Main', {
         xtype: 'component',
         padding: 10,
         height: 40,
-        html: 'My Super Titile'
+        html: 'Emojis'
     }, {
-        xtype: 'panel',
-        bind: {
-            title: '{name}'
-        },
-        region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
-        width: 250,
-        split: true,
-        tbar: [{
-            text: 'BuButton',
-            handler: 'onClickButton'
-        }]
-    },{
         region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
-        }]
+        xtype: 'gridpanel',
+        columns: columns,
+        store: store,
+        loadMask: true,
+        //bbar: pagingToolbar,
+        //plugins: [rowEditing],
+        stripeRows: true,
+        selType: 'rowmodel',
+        viewConfig: {
+            forceFit: true
+        },
+        //listeners: {
+        //    itemcontextmenu: doRowCtxMenu,
+        //    destroy: function (thisGrid) {
+        //        if (thisGrid.rowCtxMenu) {
+        //            thisGrid.rowCtxMenu.destroy();
+        //       }
+        //    }
+        //}
     }]
 });
+

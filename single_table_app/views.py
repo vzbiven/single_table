@@ -1,15 +1,17 @@
 # Create your views here.
 
-from single_table_app.models import Emoji
-from single_table_app.serializers import EmojiSerializer
 from django.http import Http404
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.views.decorators.csrf import ensure_csrf_cookie
+
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+from single_table_app.models import Emoji
+from single_table_app.serializers import EmojiSerializer
 
 #main view for table
 @ensure_csrf_cookie
