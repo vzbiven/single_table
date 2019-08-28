@@ -1,2 +1,2 @@
 // @tag full-page
-// @require /Users/vzbiven/Developer/Django/extJS_single_table/static/apps/table-app/app.js
+// @require /Users/mm/Developer/single_table/static/apps/table-app/app.js

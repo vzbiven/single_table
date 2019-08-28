@@ -1,4 +1,4 @@
-$image-search-path: '/Users/vzbiven/Developer/Django/extJS_single_table/static/apps/build/development/TableApp/resources';
+$image-search-path: '/Users/mm/Developer/single_table/static/apps/build/development/TableApp/resources';
 $theme-name:  'ext-theme-neptune' !default;
 $include-emoji: true;
 $include-ext-abstractcomponent: true;
@@ -910,6 +910,7 @@ $include-extthemeneptune-resizer-splitter: true;
 $include-extthemeneptune-toolbar-paging: true;
 $include-extthemeneptune-toolbar-toolbar: true;
 $include-tableapp-application: true;
+$include-tableapp-store-emoji: true;
 $include-tableapp-view-emoji-table-emojitable: true;
 $include-tableapp-view-emoji-table-emojitablecontroller: true;
 $include-tableapp-view-emoji-table-emojitablemodel: true;

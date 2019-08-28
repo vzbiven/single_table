@@ -6,84 +6,43 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
     //creating editor for rows data
-var textField = {
-    xtype: 'textfield',
-    getSubmitValue: function(){
-        var value = this.getValue();
-        if(Ext.isEmpty(value)) {
-            return null;
+    var onInsertRecord = function () {
+        var selected = grid.selModel.getSelection();
+        rowEditing.cancelEdit();
+        var newEmoji = Ext.create("Emoji");
+        store.insert(selected[0].index, newEmoji);
+        rowEditing.startEdit(selected[0].index, 0);
+    };
+
+    //setting context menu to edit data
+    var doRowCtxMenu = function (view, record, item, index, e) {
+        e.stopEvent();
+        if (!grid.rowCtxMenu) {
+            grid.rowCtxMenu = new Ext.menu.Menu({
+                items: [
+                    {
+                        text: 'Insert Record',
+                        handler: onInsertRecord
+
+                    },
+                    {
+                        text: 'Delete Record',
+                        handler: onDelete
+                    }
+                ]
+            });
         }
-        return value;
-}
-};
-    
-var columns = [
-    {
-        header: 'ID',
-        dataIndex: 'id',
-        sortable: true,
-        width: 50,
-    },
-    {
-        header: 'Emoji',
-        dataIndex: 'emoji',
-        sortable: true,
-        width: 50,
-        editor: textField
-    },
-    {
-        header: 'Name',
-        dataIndex: 'name',
-        sortable: true,
-        flex: 1,
-        editor: textField
-    },
-    {
-         header: 'Group',
-         dataIndex: 'group',
-         sortable: true,
-         flex: 1,
-         editor: textField
-    },
-    {
-        header: 'Sub Group',
-        dataIndex: 'sub_group',
-        sortable: true,
-        editor: textField,
-    },
-    {
-        header: 'Codepoints',
-        dataIndex: 'codepoints',
-        sortable: true,
-        editor: textField
-    },
-
-];
-
-
-//Creating store to hold data with dynamic loading via rest
-var store = Ext.create('Ext.data.Store', {
-    model: 'Emoji',
-    autoLoad: {start: 0, limit: 25},
-    proxy: {
-        noCache: false,
-        type: 'rest',
-        url: 'emojis',
-        format: 'json',
-        reader: {
-            type: 'json',
-            rootProperty: 'data',
-            totalProperty: 'total'
-        },
-        writer: 'json',
-    },
-});
+        grid.selModel.select(record);
+        grid.rowCtxMenu.showAt(e.getXY());
+    };
 
 Ext.define('TableApp.view.main.Main', {
     extend: 'Ext.container.Container',
     requires: [
         'TableApp.view.main.MainController',
-        'TableApp.view.main.MainModel'
+        'TableApp.view.main.MainModel',
+
+        'TableApp.view.emojitable.Emoji*'
     ],
 
     xtype: 'app-main',
@@ -105,25 +64,9 @@ Ext.define('TableApp.view.main.Main', {
         html: 'Emojis'
     }, {
         region: 'center',
-        xtype: 'gridpanel',
-        columns: columns,
-        store: store,
-        loadMask: true,
-        //bbar: pagingToolbar,
-        //plugins: [rowEditing],
-        stripeRows: true,
-        selType: 'rowmodel',
-        viewConfig: {
-            forceFit: true
-        },
-        //listeners: {
-        //    itemcontextmenu: doRowCtxMenu,
-        //    destroy: function (thisGrid) {
-        //        if (thisGrid.rowCtxMenu) {
-        //            thisGrid.rowCtxMenu.destroy();
-        //       }
-        //    }
-        //}
+        xtype: 'emojitable',
+        padding: 10,
+        height: 40,
     }]
 });
 
