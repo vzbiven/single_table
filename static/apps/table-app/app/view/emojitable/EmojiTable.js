@@ -1,20 +1,3 @@
-var store = Ext.create('Ext.data.Store', {
-    model: 'Emoji',
-    autoLoad: {start: 0, limit: 25},
-    proxy: {
-        noCache: false,
-        type: 'rest',
-        url: 'emojis',
-        format: 'json',
-        reader: {
-            type: 'json',
-            rootProperty: 'data',
-            totalProperty: 'total'
-        },
-        writer: 'json',
-    },
-});
-
 var columns = [
     {
         header: 'ID',
@@ -55,7 +38,17 @@ var columns = [
         sortable: true,
         editor: 'textfield'
     },
-
+    {
+        xtype: 'actioncolumn',
+        sortable: false,
+        menuDisabled: true,
+        items: [{
+            icon: 'resources/icons/delete.png', // ???
+            tooltip: 'Delete Emoji',
+            handler: 'onDelete'
+        }],
+        
+    }
 ];
 
 Ext.define("TableApp.view.emojitable.EmojiTable",{
@@ -65,7 +58,8 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
  
     requires: [
         "TableApp.view.emojitable.EmojiTableController",
-        "TableApp.view.emojitable.EmojiTableModel"
+        "TableApp.view.emojitable.EmojiTableModel",
+
     ],
     
     controller: "emojitable-emojitable",
@@ -80,7 +74,7 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
     }],
     bbar: {
         xtype: 'pagingtoolbar',
-        store: store,
+        store: 'Emojis',
         displayInfo: true,
         items: [
             '-',
@@ -105,7 +99,7 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
         clicksToMoveEditor: 1,
         autoCancel: false
     }],
-    store: store,//{
+    store: 'Emojis',//{
         //type: 'emojis'
     //},
     columns: columns,

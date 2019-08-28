@@ -10,4 +10,8 @@ Ext.define('TableApp.view.emojitable.EmojiTableController', {
         view.store.insert(0, rec);
         view.findPlugin('rowediting').startEdit(rec, 0);
     },
+
+    onDelete: function(grid, rowIndex){
+        grid.getStore().removeAt(rowIndex);
+    }
 });

@@ -1,10 +1,11 @@
-Ext.define('TableApp.store.Emoji', {
+Ext.define('TableApp.store.Emojis', {
     extend: 'Ext.data.Store',
     alias: 'store.emojis',
     
     model: 'Emoji',
 
     autoLoad: {start: 0, limit: 25},
+    
     proxy: {
         noCache: false,
         type: 'rest',
@@ -13,7 +14,8 @@ Ext.define('TableApp.store.Emoji', {
         reader: {
             type: 'json',
             rootProperty: 'data',
-            totalProperty: 'total'
+            totalProperty: 'total',
+            implicitIncludes: false,
         },
         writer: 'json',
     },

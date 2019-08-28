@@ -8,8 +8,12 @@ Ext.define('TableApp.Application', {
     
     name: 'TableApp',
 
+    appFolder: '/static/apps/table-app/app',
+
+
     stores: [
         // TODO: add global / shared stores here
+        'Emojis'
     ],
     
     launch: function () {
