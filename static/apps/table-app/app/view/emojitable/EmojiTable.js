@@ -78,7 +78,28 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
         text: 'Add Emoji',
         handler: 'onAddClick'
     }],
-    //bbar: pagingToolbar,
+    bbar: {
+        xtype: 'pagingtoolbar',
+        store: store,
+        displayInfo: true,
+        items: [
+            '-',
+            {
+                text: 'Save Changes',
+                handler: function () {
+                    store.sync();
+                }
+            },
+            '-',
+            {
+                text: 'Reject Changes',
+                handler: function () {
+                    store.rejectChanges();
+                }
+            },
+            '-'
+        ]
+    },
     plugins: [{
         ptype: 'rowediting',
         clicksToMoveEditor: 1,
