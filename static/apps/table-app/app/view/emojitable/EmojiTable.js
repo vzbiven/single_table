@@ -80,8 +80,8 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
     },
     plugins: [{
         ptype: 'rowediting',
-        clicksToMoveEditor: 1,
-        autoCancel: false
+        //clicksToMoveEditor: 1,
+        autoCancel: true
     }],
     store: 'Emojis',
     columns: columns,
