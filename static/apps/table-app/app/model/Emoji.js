@@ -6,6 +6,6 @@ Ext.define('Emoji', {
         'name',
         'group',
         'sub_group',
-        'codepoints',
+        'codepoints'
     ]
 });

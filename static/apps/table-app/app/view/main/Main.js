@@ -66,7 +66,7 @@ Ext.define('TableApp.view.main.Main', {
         region: 'center',
         xtype: 'emojitable',
         padding: 10,
-        height: 40,
+        height: 40
     }]
 });
 

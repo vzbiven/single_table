@@ -3,7 +3,7 @@ var columns = [
         header: 'ID',
         dataIndex: 'id',
         sortable: true,
-        width: 50,
+        width: 50
     },
     {
         header: 'Emoji',
@@ -30,24 +30,13 @@ var columns = [
         header: 'Sub Group',
         dataIndex: 'sub_group',
         sortable: true,
-        editor: 'textfield',
+        editor: 'textfield'
     },
     {
         header: 'Codepoints',
         dataIndex: 'codepoints',
         sortable: true,
         editor: 'textfield'
-    },
-    {
-        xtype: 'actioncolumn',
-        sortable: false,
-        menuDisabled: true,
-        items: [{
-            icon: 'resources/icons/delete.png', // ???
-            tooltip: 'Delete Emoji',
-            handler: 'onDelete'
-        }],
-        
     }
 ];
 
@@ -58,8 +47,7 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
  
     requires: [
         "TableApp.view.emojitable.EmojiTableController",
-        "TableApp.view.emojitable.EmojiTableModel",
-
+        "TableApp.view.emojitable.EmojiTableModel"
     ],
     
     controller: "emojitable-emojitable",
@@ -80,16 +68,12 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
             '-',
             {
                 text: 'Save Changes',
-                handler: function () {
-                    store.sync();
-                }
+                handler: 'syncStore'
             },
             '-',
             {
                 text: 'Reject Changes',
-                handler: function () {
-                    store.rejectChanges();
-                }
+                handler: 'rejectChanges'
             },
             '-'
         ]
@@ -99,21 +83,19 @@ Ext.define("TableApp.view.emojitable.EmojiTable",{
         clicksToMoveEditor: 1,
         autoCancel: false
     }],
-    store: 'Emojis',//{
-        //type: 'emojis'
-    //},
+    store: 'Emojis',
     columns: columns,
     stripeRows: true,
     selType: 'rowmodel',
     viewConfig: {
         forceFit: true
     },
-    //listeners: {
-        //    itemcontextmenu: doRowCtxMenu,
-        //    destroy: function (thisGrid) {
-        //        if (thisGrid.rowCtxMenu) {
-        //            thisGrid.rowCtxMenu.destroy();
-        //       }
-        //    }
-        //}
-});
+    listeners: {
+        itemcontextmenu: 'doRowCtxMenu',
+        destroy: function (thisGrid) {
+            if (thisGrid.rowCtxMenu) {
+                thisGrid.rowCtxMenu.destroy();
+            }
+        }
+    }
+})

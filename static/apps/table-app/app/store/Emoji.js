@@ -15,8 +15,8 @@ Ext.define('TableApp.store.Emojis', {
             type: 'json',
             rootProperty: 'data',
             totalProperty: 'total',
-            implicitIncludes: false,
+            implicitIncludes: false
         },
-        writer: 'json',
-    },
-});
+        writer: 'json'
+    }
+})
