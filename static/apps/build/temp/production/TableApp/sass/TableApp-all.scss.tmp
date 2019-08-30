@@ -1,4 +1,4 @@
-$image-search-path: '/Users/mm/Developer/single_table/static/apps/build/production/TableApp/resources';
+$image-search-path: '/Users/vzbiven/Developer/Django/single_table/static/apps/build/production/TableApp/resources';
 $theme-name:  'ext-theme-neptune' !default;
 $include-emoji: true;
 $include-ext-abstractcomponent: true;
