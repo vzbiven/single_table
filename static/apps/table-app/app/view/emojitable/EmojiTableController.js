@@ -1,7 +1,7 @@
 Ext.define('TableApp.view.emojitable.EmojiTableController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.emojitable-emojitable',
-    
+
 
     onAddClick: function () {
         var view = this.getView(),
@@ -11,7 +11,7 @@ Ext.define('TableApp.view.emojitable.EmojiTableController', {
         view.findPlugin('rowediting').startEdit(rec, 0);
     },
 
-    onDelete: function(grid, rowIndex){
+    onDelete: function (grid, rowIndex) {
         Ext.MessageBox.confirm(
             'Confirm delete',
             'Are you sure?',
@@ -23,30 +23,29 @@ Ext.define('TableApp.view.emojitable.EmojiTableController', {
         )
     },
 
-    syncStore: function(){
+    syncStore: function () {
         var view = this.getView();
         view.getStore().sync();
     },
 
-    rejectChanges: function(){
+    rejectChanges: function () {
         var view = this.getView();
         view.getStore().rejectChanges();
     },
 
-    doRowCtxMenu: function(view, record, item, index, e) {
+    doRowCtxMenu: function (view, record, item, index, e) {
         e.stopEvent();
         view.rowCtxMenu = Ext.widget('menu', {
-            items: [
-                {
+            items: [{
                     text: 'Delete',
-                    handler: function(){
+                    handler: function () {
                         this.onDelete(view, index)
                     },
                     scope: this
                 },
                 {
                     text: 'Edit',
-                    handler: function(){
+                    handler: function () {
                         this.view.findPlugin('rowediting').startEdit(record, 0);
                     },
                     scope: this

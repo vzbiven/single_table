@@ -15,7 +15,7 @@ Ext.define('TableApp.view.main.Main', {
     ],
 
     xtype: 'app-main',
-    
+
     controller: 'main',
     viewModel: {
         type: 'main'
@@ -48,4 +48,3 @@ Ext.define('TableApp.view.main.Main', {
         }
     }]
 });
-

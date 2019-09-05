@@ -1,5 +1,4 @@
-var columns = [
-    {
+var columns = [{
         header: 'ID',
         dataIndex: 'id',
         sortable: true,
@@ -20,11 +19,11 @@ var columns = [
         editor: 'textfield'
     },
     {
-         header: 'Group',
-         dataIndex: 'group',
-         sortable: true,
-         flex: 1,
-         editor: 'textfield'
+        header: 'Group',
+        dataIndex: 'group',
+        sortable: true,
+        flex: 1,
+        editor: 'textfield'
     },
     {
         header: 'Sub Group',
@@ -40,16 +39,16 @@ var columns = [
     }
 ];
 
-Ext.define("TableApp.view.emojitable.EmojiTable",{
+Ext.define("TableApp.view.emojitable.EmojiTable", {
     extend: "Ext.grid.Panel",
     xtype: 'gridpanel',
     alias: 'widget.emojitable',
- 
+
     requires: [
         "TableApp.view.emojitable.EmojiTableController",
         "TableApp.view.emojitable.EmojiTableModel"
     ],
-    
+
     controller: "emojitable-emojitable",
     viewModel: {
         type: "emojitable-emojitable"
