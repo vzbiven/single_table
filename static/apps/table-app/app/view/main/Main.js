@@ -21,30 +21,13 @@ Ext.define('TableApp.view.main.Main', {
         type: 'main'
     },
 
-    layout: {
-        type: 'border'
-    },
+    layout: 'fit',
 
     items: [{
-        region: 'north',
-        xtype: 'component',
-        padding: 10,
-        height: 40,
-        html: 'Emojis'
-    }, {
         region: 'center',
-        xtype: 'window',
+        xtype: 'emojitable',
         title: 'Emojis',
         autoShow: true,
-        height: 600,
-        width: 800,
         border: false,
-        layout: 'fit',
-        closable: true,
-        maximizable: true,
-        items: {
-            xtype: 'emojitable',
-            border: false
-        }
     }]
 });
